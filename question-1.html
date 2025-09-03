@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What kind of living setup feels most like you?</title>
+    <link rel="stylesheet" href="https://use.typekit.net/brf4gsm.css">
+    <link href="https://db.onlinewebfonts.com/c/b76dcc4b7c1c0ff6f43d6b841f890530?family=Codan+Regular+Regular" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="question-page">
+    <div class="content">
+        <!-- Home button -->
+        <a href="index.html" class="home-btn">
+            <img src="assets/home.png" alt="Home" class="home-icon">
+        </a>
+
+    <!-- Progress dots -->
+        <div class="progress-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <h2>What kind of living setup<br>feels most like you?</h2>
+
+        <!-- Options Container -->
+        <div class="options-container">
+            <!-- Option 1 -->
+            <div class="option-card" 
+                 data-sustainability="5"
+                 data-housing-type="house">
+                <img src="assets/spacious-living.png" alt="Spacious living room" class="option-img">
+                <div class="option-text">
+                    <h3>Spacious</h3>
+                    <p>I like a lot of space to myself, with a quiet environment.</p>
+                </div>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="option-card"
+                 data-sustainability="12"
+                 data-housing-type="apartment">
+                <img src="assets/small-and-social-living.png" alt="Social living space" class="option-img">
+                <div class="option-text">
+                    <h3>Small & Social</h3>
+                    <p>I like everything to be close by including people.</p>
+                </div>
+            </div>
+
+            <!-- Option 3 -->
+            <div class="option-card"
+                 data-sustainability="17"
+                 data-housing-type="loft">
+                <img src="assets/small-but-growing-living.png" alt="Growing living space" class="option-img">
+                <div class="option-text">
+                    <h3>Small but Growing</h3>
+                    <p>A cozy space with a tight knit community.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="questionnaireLogic.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

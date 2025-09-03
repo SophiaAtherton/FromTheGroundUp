@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Future Home</title>
+      <link rel="stylesheet" href="https://use.typekit.net/brf4gsm.css">
+  <link href="https://db.onlinewebfonts.com/c/b76dcc4b7c1c0ff6f43d6b841f890530?family=Codan+Regular+Regular" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="results-page">
+    <div id="bgTransitionOverlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;opacity:0;transition:opacity 0.8s cubic-bezier(0.77,0,0.175,1);background:url('assets/background-change.png') no-repeat center center/cover;"></div>
+    <div class="results-container" id="resultsView">
+        <div class="house-animation-container">
+            <img src="assets/low-apartment.png" alt="Future Home" class="house-image" id="houseImage">
+        </div>
+        <div class="arrow-and-text">
+            <div class="results-text" id="resultsText">
+                <h2>Your future home is</h2>
+                <div class="score-container">
+                    <span id="sustainabilityScore"></span>
+                    <span class="percentage-symbol">%</span>
+                    <span class="sustainable">sustainable</span>
+                    <div class="add-home-btn-container" id="addHomeBtnContainer" style="display:none;">
+                        <button class="add-home-btn" id="addHomeBtn">
+                            <img src="assets/upload.png" alt="Add Home Icon" class="add-home-icon">
+                            <p><strong>Add</strong> your home to the<br> new city model!</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button id="arrowLink" class="arrow-btn">
+                <img src="assets/grey-arrow.png" alt="Next Arrow" class="next-arrow" id="arrowImage">
+            </button>
+        </div>
+    </div>
+
+    <div class="results-container upload-view" id="uploadView" style="display:none;">
+        <div class="house-animation-container">
+            <img src="assets/low-apartment.png" alt="Future Home" class="house-image scale-down" id="uploadHouseImage">
+        </div>
+        <div class="add-home-btn-container">
+            <button class="add-home-btn" id="addHomeBtn">
+                <img src="assets/upload.png" alt="Add Home Icon" class="add-home-icon">
+                <p><strong>Add</strong> your home to the<br> new city model!</p>
+            </button>
+        </div>
+            <div class="progress"></div>
+        </div>
+    </div>
+
+                <script src="results.js" type="module"></script>
+                <script src="transition.js"></script>
+    <script>
+    // Animate house scale down, background change, add-home button, and responsive progress bar
+    // This logic was previously restored
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const houseImg = document.getElementById('houseImage');
+        const arrowLink = document.getElementById('arrowLink');
+        const arrowAndText = document.querySelector('.arrow-and-text');
+        const bgOverlay = document.getElementById('bgTransitionOverlay');
+        const body = document.body;
+        const progressBar = document.querySelector('.progress');
+
+
+        arrowLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Animate house scaling down
+            houseImg.style.transition = 'transform 0.9s cubic-bezier(0.4,0.8,0.2,1), top 0.9s cubic-bezier(0.4,0.8,0.2,1), left 0.9s cubic-bezier(0.4,0.8,0.2,1)';
+            houseImg.style.transform = 'scale(0.87)';
+            houseImg.style.top = '45px';
+            houseImg.style.left = '0px';
+            // Per-model adjustment
+            var src = houseImg.src;
+            if (src.includes('high-house.png')) {
+                houseImg.style.left = '10px';
+                houseImg.style.top = '55px';
+            } else if (src.includes('mid-house.png')) {
+                houseImg.style.left = '10px';
+                houseImg.style.top = '40px';
+            } else if (src.includes('low-house.png')) {
+                houseImg.style.left = '10px';
+                houseImg.style.top = '40px';
+            } else if (src.includes('high-loft.png')) {
+                houseImg.style.left = '8px';
+                houseImg.style.top = '55px';
+            } else if (src.includes('mid-loft.png')) {
+                houseImg.style.left = '3px';
+                houseImg.style.top = '55px';
+            } else if (src.includes('low-loft.png')) {
+                houseImg.style.left = '-2px';
+                houseImg.style.top = '60px';
+            } else if (src.includes('high-apartment.png')) {
+                houseImg.style.left = '5px';
+                houseImg.style.top = '-20px';
+            } else if (src.includes('mid-apartment.png')) {
+                houseImg.style.left = '33px';
+                houseImg.style.top = '0px';
+            } else if (src.includes('low-apartment.png')) {
+                houseImg.style.left = '3px';
+                houseImg.style.top = '5px';
+            }
+            // Animate background overlay fade in
+            bgOverlay.style.opacity = 1;
+            // Animate progress bar to 77%
+            if (progressBar) progressBar.style.transition = 'width 0.7s cubic-bezier(0.77,0,0.175,1)';
+            if (progressBar) progressBar.style.width = '77%';
+            setTimeout(() => {
+                // Actually change the body background after overlay fades in
+                body.style.background = "url('assets/background-change.png') no-repeat center center/cover";
+                bgOverlay.style.opacity = 0;
+                // Replace arrow-and-text with add-home button (initially hidden)
+                arrowAndText.outerHTML = `
+                <div class="add-home-btn-container">
+                    <button class="add-home-btn" id="addHomeBtn">
+                        <span id="addHomeIconContainer">
+                            <svg id="loadingCircle" width="40" height="40" viewBox="0 0 40 40" style="display:none;" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="20" r="16" stroke="#24483A" stroke-width="4" fill="none" stroke-dasharray="100" stroke-dashoffset="60">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                            <img src="assets/upload.png" alt="Add Home Icon" class="add-home-icon" id="addHomeIcon">
+                        </span>
+                        <p id="addHomeBtnText"><strong>Add</strong> your home to the<br> new city model!</p>
+                    </button>
+                </div>
+                `;
+                // Animate button in
+                setTimeout(() => {
+                    const btn = document.getElementById('addHomeBtn');
+                    if (btn) {
+                        btn.style.opacity = 1;
+                        btn.style.transform = 'translateY(0)';
+                        btn.addEventListener('click', function() {
+                            btn.classList.add('clicked');
+                            document.getElementById('addHomeIcon').style.display = 'none';
+                            document.getElementById('loadingCircle').style.display = 'inline-block';
+                            setTimeout(() => {
+                                document.getElementById('loadingCircle').style.display = 'none';
+                                document.getElementById('addHomeIconContainer').innerHTML = `
+                                    <svg id="tickSvg" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="opacity:0;transform:scale(0.7);transition:opacity 0.5s cubic-bezier(0.77,0,0.175,1),transform 0.5s cubic-bezier(0.77,0,0.175,1);">
+                                        <circle cx="20" cy="20" r="16" stroke="#24483A" stroke-width="4" fill="none"/>
+                                        <polyline points="12,22 18,28 28,14" stroke="#24483A" stroke-width="4" fill="none">
+                                            <animate attributeName="points" values="12,22 18,28 28,14;12,22 18,28 28,14" dur="0.5s" repeatCount="1"/>
+                                        </polyline>
+                                    </svg>
+                                `;
+                                setTimeout(() => {
+                                    const tickSvg = document.getElementById('tickSvg');
+                                    if (tickSvg) {
+                                        tickSvg.style.opacity = '1';
+                                        tickSvg.style.transform = 'scale(1)';
+                                        // After tick animation, fade overlay and go to next page
+                                        setTimeout(() => {
+                                            // Create/fade overlay for smooth transition
+                                            let overlay = document.getElementById('transitionOverlay');
+                                            if (!overlay) {
+                                                overlay = document.createElement('div');
+                                                overlay.id = 'transitionOverlay';
+                                                overlay.className = 'transition-overlay';
+                                                document.body.appendChild(overlay);
+                                            }
+                                            overlay.classList.add('active');
+                                            setTimeout(() => {
+                                                window.location.href = 'action-card.html';
+                                            }, 700); // Duration matches overlay fade
+                                        }, 600); // Wait for tick animation to finish
+                                    }
+                                }, 50);
+                            }, 2000);
+                        });
+                    }
+                }, 100);
+            }, 700);
+        });
+    });
+    </script>
+</body>
+</html>

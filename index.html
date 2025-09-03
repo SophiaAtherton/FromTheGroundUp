@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reimagine Your Future</title>
+  <!-- Load Adobe Fonts first -->
+  <link rel="stylesheet" href="https://use.typekit.net/brf4gsm.css">
+  <link href="https://db.onlinewebfonts.com/c/b76dcc4b7c1c0ff6f43d6b841f890530?family=Codan+Regular+Regular" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+      // Clear quiz data when starting again
+      localStorage.removeItem('selectedHousingType');
+      localStorage.removeItem('sustainabilityScores');
+      localStorage.removeItem('sustainabilityScore');
+
+      // Set video playback rate to 0.7x
+      window.addEventListener('DOMContentLoaded', function() {
+        var video = document.querySelector('.index-video-container video');
+        if (video) {
+          video.playbackRate = 0.7;
+        }
+      });
+    </script>
+
+    <div class="content">
+    <img src="assets/primary-logo-dark-green.png" alt="From the Ground Up" class="logo">
+
+
+    <h1 class="home-title">How sustainable are you?</h1>
+    <p class="home-subtitle large-text">Take the quiz to unlock your sustainable home and join our growing city.</p>
+
+    <!-- Full-width MP4 video below text, above swipe -->
+    <div class="index-video-container">
+      <video src="assets/animation-clip.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <!-- Swipe Button -->
+    <div class="swipe-container" id="swipeContainer">
+      <div class="swipe-track">
+        <div class="swipe-handle" id="swipeHandle">
+          <span class="swipe-text">swipe</span>
+        </div>
+      </div>
+      <div class="swipe-arrows">
+          <img src="assets/arrows.png" alt="Swipe arrow" class="arrow-icon">
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="transition.js"></script>
+</body>
+</html>
